@@ -1,0 +1,7 @@
+[geoblock]
+sqlite=sqlite:////path/name.db # CHANGE ME!
+module_name=renderer
+templates_folder=templates
+
+[nginx]
+country_variable=geoip2_country_code

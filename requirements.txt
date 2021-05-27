@@ -1,0 +1,5 @@
+sqlalchemy
+alembic
+jinja2
+click
+tabulate

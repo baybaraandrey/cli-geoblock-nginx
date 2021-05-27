@@ -1,0 +1,214 @@
+[MASTER]
+extension-pkg-whitelist=
+ignore=CVS,
+       migrations,
+       south_migrations,
+       .git
+       .env
+       alembic/env.py
+
+ignore-patterns=
+jobs=1
+limit-inference-results=100
+persistent=yes
+suggestion-mode=yes
+unsafe-load-any-extension=no
+
+[MESSAGES CONTROL]
+confidence=
+disable=apply-builtin,
+        backtick,
+        basestring-builtin,
+        buffer-builtin,
+        cmp-builtin,
+        cmp-method,
+        coerce-builtin,
+        coerce-method,
+        delslice-method,
+        dict-iter-method,
+        dict-view-method,
+        execfile-builtin,
+        file-builtin,
+        filter-builtin-not-iterating,
+        getslice-method,
+        hex-method,
+        import-star-module-level,
+        indexing-exception,
+        input-builtin,
+        intern-builtin,
+        long-builtin,
+        long-suffix,
+        map-builtin-not-iterating,
+        metaclass-assignment,
+        missing-docstring,
+        next-method-called,
+        no-absolute-import,
+        nonzero-method,
+        oct-method,
+        old-division,
+        old-ne-operator,
+        old-octal-literal,
+        old-raise-syntax,
+        parameter-unpacking,
+        print-statement,
+        raising-string,
+        range-builtin-not-iterating,
+        raw_input-builtin,
+        reduce-builtin,
+        reload-builtin,
+        round-builtin,
+        setslice-method,
+        standarderror-builtin,
+        suppressed-message,
+        too-few-public-methods,
+        unichr-builtin,
+        unicode-builtin,
+        unpacking-in-except,
+        useless-suppression,
+        using-cmp-argument,
+        xrange-builtin,
+        zip-builtin-not-iterating,
+        missing-docstring,
+        empty-docstring
+enable=c-extension-no-member
+
+[REPORTS]
+evaluation=10.0 - ((float(5 * error + warning + refactor + convention) / statement) * 10)
+output-format=colorized
+reports=yes
+score=yes
+
+[REFACTORING]
+expected-line-ending-format=LF
+max-nested-blocks=5
+never-returning-functions=sys.exit
+
+[MISCELLANEOUS]
+notes=FIXME,
+      XXX,
+      TODO
+
+[SPELLING]
+max-spelling-suggestions=4
+spelling-dict=
+spelling-ignore-words=
+spelling-private-dict-file=
+spelling-store-unknown-words=no
+
+[SIMILARITIES]
+ignore-comments=yes
+ignore-docstrings=yes
+ignore-imports=no
+min-similarity-lines=4
+
+[FORMAT]
+expected-line-ending-format=
+ignore-long-lines=^\s*(# )?<?https?://\S+>?$
+indent-after-paren=4
+indent-string='    '
+max-line-length=100
+max-module-lines=1000
+no-space-check=trailing-comma,
+               dict-separator
+single-line-class-stmt=no
+single-line-if-stmt=no
+
+[BASIC]
+argument-naming-style=snake_case
+attr-naming-style=snake_case
+bad-names=foo,
+          bar,
+          baz,
+class-attribute-naming-style=any
+class-naming-style=PascalCase
+const-naming-style=UPPER_CASE
+docstring-min-length=-1
+function-naming-style=snake_case
+good-names=i,
+           j,
+           k,
+           n,
+           e,
+           ex,
+           fn,
+           dt,
+           nc,
+           Run,
+           qs,
+           pk,
+           urlpatterns,
+           register,
+           app_name,
+           handler500,
+           log,
+           _
+include-naming-hint=no
+inlinevar-naming-style=any
+method-naming-style=snake_case
+module-naming-style=snake_case
+name-group=
+no-docstring-rgx=^_
+property-classes=abc.abstractproperty
+variable-naming-style=snake_case
+
+[VARIABLES]
+additional-builtins=
+allow-global-unused-variables=yes
+callbacks=cb_,
+          _cb
+dummy-variables-rgx=_+$|(_[a-zA-Z0-9_]*[a-zA-Z0-9]+?$)
+ignored-argument-names=_.*
+init-import=no
+redefining-builtins-modules=six.moves,past.builtins,future.builtins,builtins,io
+
+[LOGGING]
+logging-format-style=old
+logging-modules=logging
+
+[TYPECHECK]
+contextmanager-decorators=contextlib.contextmanager
+generated-members=
+ignore-mixin-members=yes
+ignore-none=yes
+ignore-on-opaque-inference=yes
+ignored-classes=optparse.Values,thread._local,_thread._local
+missing-member-hint=yes
+missing-member-hint-distance=1
+missing-member-max-choices=1
+
+[IMPORTS]
+allow-wildcard-with-all=no
+analyse-fallback-blocks=no
+deprecated-modules=optparse,tkinter.tix
+ext-import-graph=
+import-graph=
+int-import-graph=
+known-standard-library=
+known-third-party=enchant
+
+[DESIGN]
+max-args=5
+max-attributes=7
+max-bool-expr=5
+max-branches=12
+max-locals=15
+max-parents=7
+max-public-methods=20
+max-returns=6
+max-statements=50
+min-public-methods=2
+
+[CLASSES]
+defining-attr-methods=__init__,
+                      __new__,
+                      setUp
+exclude-protected=_asdict,
+                  _fields,
+                  _replace,
+                  _source,
+                  _make
+valid-classmethod-first-arg=cls
+valid-metaclass-classmethod-first-arg=mcs
+
+[EXCEPTIONS]
+overgeneral-exceptions=Exception

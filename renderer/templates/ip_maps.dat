@@ -1,0 +1,3 @@
+{% for rule in ip_access_control %}
+{{ rule.access.value }} {{ rule.address }};
+{% endfor %}

@@ -1,0 +1,8 @@
+{% for route in routes %}
+map ${{ nginx_country_variable }} ${{ route.label }} {
+    default {{ route.block_by_default }};
+    {% for country in route.countries %}
+    {{ country.code }} {{ country.is_blocked }};
+    {% endfor %}
+}
+{% endfor %}

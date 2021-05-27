@@ -1,0 +1,83 @@
+---
+
+- name: Nginx acl
+  hosts: all
+  vars:
+    access_control_bak_dir: /tmp/nginx/access-control-bak/
+    access_control_nginx_dir: /etc/nginx/access-control/
+    nginx_geo_access_control_list_path: /etc/nginx/access-control/geo.acl
+    nginx_ip_access_control_list_path: /etc/nginx/access-control/ip.acl
+
+  tasks:
+    - name: First Check NGINX config
+      command: nginx -t
+      register: starting_nginx_config_status
+
+    - name: Create access control bak directory if they dont exist
+      file:
+        path: "{{ access_control_bak_dir }}"
+        state: directory
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Create access control directory if they dont exist
+      file:
+        path: "{{ access_control_nginx_dir }}"
+        state: directory
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Backup access control files
+      copy:
+        src: "{{ access_control_nginx_dir }}"
+        dest: "{{ access_control_bak_dir }}"
+        owner: root
+        group: root
+        remote_src: True
+        mode: 0644
+        backup: yes
+
+    - name: Copy nginx geo access control list
+      copy:
+        src: "{{ nginx_geo_access_control_list_path }}"
+        dest: "{{ nginx_geo_access_control_list_path }}"
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+        directory_mode: yes
+
+    - name: Copy nginx geo ip control list
+      copy:
+        src: "{{ nginx_ip_access_control_list_path }}"
+        dest: "{{ nginx_ip_access_control_list_path }}"
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+        directory_mode: yes
+
+    - block:
+        - name: Check NGINX configs
+          command: nginx -t
+          register: nginx_config_status
+
+      ignore_errors: yes
+
+    - name: NGINX test status
+      debug:
+        msg: "{{ nginx_config_status }}"
+
+    - name: NGINX test status
+      debug:
+        msg: "{{ nginx_config_status.rc }}"
+
+    - name: Service NGINX reload conf
+      service: name=nginx state=reloaded
+      when: nginx_config_status.rc == 0
+
+    - name:  Restore backup access control folder
+      command: cp -r "{{ access_control_bak_dir }}". "{{ access_control_nginx_dir }}"
+      when: nginx_config_status.rc != 0
